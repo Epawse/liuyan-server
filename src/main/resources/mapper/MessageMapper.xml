@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.message.management.mapper.MessageMapper">
+
+
+	<select id="selectMessagesByUserId"> SELECT * FROM messages WHERE user_id = #{userId} </select>
+
+	<select id="getAllBaseInfo" resultType="com.message.management.entity.Message"> SELECT id,
+		query_code AS queryCode, user_id AS userId, subject, dateline, thread_state AS threadState,
+		handle_state AS handleState, process_state AS processState, trace_state AS traceState,
+		mark_state AS markState, report_state AS reportState, satisfaction, last_update AS lastUpdate,
+		last_answer_time AS lastAnswerTime, create_time AS createTime, update_time AS updateTime,
+		district_id AS districtId, has_attachment AS hasAttachment FROM messages </select>
+
+	<select id="selectPageVo" resultType="com.message.management.entity.vo.MessageVo"> SELECT
+		m.query_code AS queryCode, m.user_id AS userId, m.subject, m.dateline, m.handle_state AS
+		handleState, m.satisfaction, m.last_update AS lastUpdate, m.last_answer_time AS lastAnswerTime,
+		m.district_id AS districtId, m.has_attachment AS hasAttachment FROM messages m WHERE 1=1 <if
+			test="districtId != null"> AND m.district_id = #{districtId} </if>
+            <if
+			test="handleState != null"> AND m.handle_state = #{handleState} </if>
+	</select>
+
+	<select id="selectMessagesByKeyWord" resultType="com.message.management.entity.Message"> SELECT *
+		FROM messages WHERE subject LIKE CONCAT('%',#{keyWord},'%') </select>
+
+	<select id="getByQueryCode" resultType="com.message.management.entity.Message"> SELECT * FROM
+		messages WHERE query_code = #{queryCode} </select>
+
+</mapper>

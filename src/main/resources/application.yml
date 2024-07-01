@@ -1,0 +1,31 @@
+server:
+  port: 8088
+  servlet:
+    context-path: /
+spring:
+  data:
+    redis:
+      host: 35.234.53.239
+      port: 6379
+      password: PRIMEb350m
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://35.234.53.239:5432/liuyan
+    username: postgres
+    password: PRIMEb350m
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+# spring.application.name=manager
+# spring.datasource.url=jdbc:postgresql://35.234.53.239:5432/liuyan
+# spring.datasource.username=postgres
+# spring.datasource.password=PRIMEb350m
+# spring.datasource.driver-class-name=org.postgresql.Driver
+
+# mybatis.type-aliases-package=com.liuyan.manager.model
+# mybatis.mapper-locations=classpath:mapper/*.xml
+
+# server.port=8088
